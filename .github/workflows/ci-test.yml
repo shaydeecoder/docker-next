@@ -25,4 +25,4 @@ jobs:
         run: docker build -t shaydeecoder/docker-next -f Dockerfile.dev .
 
       - name: Run tests
-        run: docker run -e CI=true shaydeecoder/docker-next npm run test
+        run: docker run -e CI=true shaydeecoder/docker-next npm run test:ci
