@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    services:
+      docker:
+        image: docker:20.10.24
+        options: --privileged
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t shaydeecoder/docker-next -f Dockerfile.dev .
+
+      - name: Run tests
+        run: docker run -e CI=true shaydeecoder/docker-next npm run test
