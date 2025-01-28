@@ -10,8 +10,8 @@ RUN npm run build
 
 # Run phase
 FROM node:20-alpine AS runner
+EXPOSE 3000
 WORKDIR /app
 COPY --from=builder /app ./
 ENV NODE_ENV=production
-EXPOSE 3000
 CMD ["npm", "start"]
