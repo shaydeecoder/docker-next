@@ -12,6 +12,6 @@ RUN npm run build
 FROM node:20-alpine AS runner
 EXPOSE 3000
 WORKDIR /app
-COPY --from=builder /app ./
+COPY --from=builder /app/.next ./
 ENV NODE_ENV=production
 CMD ["npm", "start"]
